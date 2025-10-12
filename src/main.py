@@ -19,7 +19,7 @@ while True:
     for sprite_group in global_state.ALL_GROUPS:
         for sprite in sprite_group:
             # call sprite physics update method if it exists
-            update_method = getattr(sprite, sprite.update, None)
+            update_method = getattr(sprite, "update", None)
             if callable(update_method):
                 update_method()
 
