@@ -9,7 +9,17 @@ clock = pygame.time.Clock()
 
 while True:
 
+    global_state.CURRENT_FRAME += 1
+
+    global_state.MOUSE_LMB_DOWN = False
+    global_state.MOUSE_LMB_UP = False
+    global_state.MOUSE_LMB_PRESSED = pygame.mouse.get_pressed()[0]
+    global_state.MOUSE_POS = pygame.mouse.get_pos()
+
     for event in pygame.event.get():
+        if event.type == pygame.MOUSEBUTTONDOWN and event.button == 1: global_state.MOUSE_LMB_DOWN = True
+        if event.type == pygame.MOUSEBUTTONUP and event.button == 1: global_state.MOUSE_LMB_UP = True
+
         if event.type == pygame.KEYDOWN:
             if event.key == pygame.K_ESCAPE: # debug exit pre-GUI
                 pygame.quit()
