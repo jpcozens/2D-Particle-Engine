@@ -32,4 +32,4 @@ python main.py
 
 **OR**
 
-You can navigate to the main.py file in your file navigation system and launch the file manually.To install the project, simply clone to repository to your system at your desired directory.
+You can navigate to the main.py file in your file navigation system and launch the file manually.
