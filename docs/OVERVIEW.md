@@ -7,7 +7,7 @@
 [! Version-proofing to be completed at project finalisation.]
 [! Current language version is a placeholder]
 * Language: **Python 3.11+**
-* Dependencies: **Pygame, Pytest**
+* Dependencies: **Pygame, Pytest (developmental dependency)**
 
 ---
 
