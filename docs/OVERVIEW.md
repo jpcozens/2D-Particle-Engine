@@ -32,9 +32,9 @@ The following table is a representation of the high-level features of this proje
 
 ---
 
-## Module Structure & Implementation
+## Module Structure & Integration
 
-This project will be developed submodule by submodule, following the process of design, development and testing before being implemented.
+This project will be developed submodule by submodule, following the process of design, development and testing before being integrated.
 These are the high-level modules for this project.
 
 | Module | Description |
@@ -59,16 +59,17 @@ These are the submodules derived from each module:
 | :--- | :--- |
 | base-GUI | The interaction options for the base-particle submodule. Includes changing individual and overall particle velocities and positions | 
 | drag-GUI | The interaction options for the drag-particle submodule. Includes changing individual and overall particle gravity and air resistance modifiers | 
-| collision-GUI | The interaction options for the object-collisions-particle submodule. Includes placing and removing objects from the demo, as well as disabling collisions for particle-particle or object-particle |
+| collision-GUI | The interaction options for the object-collisions-particle and particle-collisions-particle submodules. Includes placing and removing objects from the demo, as well as disabling collisions for particle-particle or object-particle |
 
 ---
 
 ## Professional Practices
 
 ### Documentation
-* Architecture: detailed module design documents can be found in the [/docs/](docs directory).
+* Architecture: detailed module design documents can be found in the [docs directory](/docs/).
 * In-Code: code should be self-describing, however the less obvious code will be documented with comments.
 
 ### Version Control
 * Branching: All code development will only take place on feature branches.
+* Branch names: The naming convention for branch development uses the following notation: Feature-Module-Submodule
 * Merging: Feature branches only to be merged after completed unit tests.
