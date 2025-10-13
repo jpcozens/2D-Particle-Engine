@@ -2,6 +2,7 @@
 
 FPS_MAX = 60
 CURRENT_FRAME = 0
+FPS = 0
 
 # inputs
 

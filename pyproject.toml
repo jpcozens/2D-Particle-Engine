@@ -1,0 +1,11 @@
+[tool.pyright]
+include = ["**/*.py"]
+exclude = [
+    "**/__pycache__",
+    "**/node_modules",
+    "**/dist",
+    "**/build",
+    "**/venv",
+    "**/.venv",
+    "**/.git"
+]
