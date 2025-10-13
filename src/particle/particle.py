@@ -15,8 +15,8 @@ class Particle:
 
     def set_mode(self, mode: int): pass
 
-    def set_velocity(self, vel: tuple[float,float]): pass
+    def set_velocity(self, vel: tuple[float, float]): pass
 
-    def set_accleration(self, acc: tuple[float,float]): pass
+    def set_accleration(self, acc: tuple[float, float]): pass
 
     def delete(self): pass
