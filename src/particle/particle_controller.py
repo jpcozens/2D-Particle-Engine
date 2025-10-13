@@ -7,23 +7,27 @@ class Particle_Controller:
                  size: tuple[int, int],
                  pos: tuple[int, int] = (0,0),
                  particle_mode: int = Particle.MODE_RECT,
-                 particle_size: int = 5,
-                 particle_vel: tuple[float, float] = (5,5),
+                 particle_size: tuple[int, int] = (5,5),
                  ):
 
         self.rect = pygame.Rect(pos, size)
         self.particles = []
-        self.start(particle_mode, particle_size, particle_vel)
+        self.start(particle_mode, particle_size)
 
     # create 50 particles, clear current particles if any
-    def start(self, mode: int, size: int, vel: tuple[float, float]):
+    def start(self, mode: int, size: tuple[int, int]):
         if len(self.particles) != 0:
             self.clear()
 
         for _ in range(0,50):
-            x = random.randint(self.rect.left,self.rect.right)
-            y = random.randint(self.rect.top,self.rect.bottom)
-            self.particles.append(Particle((x,y), size, mode, vel))
+            x_pos = random.randint(self.rect.left,self.rect.right)
+            y_pos = random.randint(self.rect.top,self.rect.bottom)
+            pos = x_pos, y_pos
+
+            x_vel = random.randint(1,5)
+            y_vel = random.randint(1,5)
+            vel = x_vel, y_vel
+            self.particles.append(Particle(pos, size, mode, vel))
 
     def clear(self):
         while len(self.particles) > 0: 
