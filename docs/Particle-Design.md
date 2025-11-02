@@ -57,23 +57,28 @@ The particle controller will be implemented as a **singleton** instance it will 
 **State:**
 | Attribute | Type | Usage |
 | :--- | :--- | :--- |
-| ``this.rect`` | ``pygame.Rect`` | Stores the geometry data for the area in which particles can be displayed |
-| ``this.particles`` | ``list[Particle]`` | Stores all active particles |
+| ``self.rect`` | ``pygame.Rect`` | Stores the geometry data for the area in which particles can be displayed |
+| ``self.particles`` | ``list[Particle]`` | Stores all active particles |
 
 <br>
 
 **Methods:**
 | Method | Parameters | Usage |
 | :--- | :--- | :--- |
-| ``__init__`` | ``size: tuple(int,int),``<br>``pos : tuple(int,int) = (0,0)``<br>``particle_mode: int = Particle.MODE_RECT``<br>``particle_size: int = 5``<br>``particle_vel : tuple(float,float) = (5,5)`` | Instantiate the singleton and set the rect attribute based on size argument |
-| ``set_particle_mode`` | ``particle_mode: int`` | Set the shape of all particles |
+| ``__init__`` | ``size: tuple(int,int),``<br>``pos : tuple(int,int) = (0,0)``<br>``particle_mode: int = Particle.MODE_RECT``<br>``particle_size: int = 5`` | Instantiate the singleton and set the rect attribute based on size and pos arguments |
+| ``set_particle_mode`` | ``particle_mode: int`` | Set the shape and collision mode of all particles |
 | ``set_particle_velocity`` | ``particle_vel: tuple(float, float)`` | Set the velocity of all particles |
 | ``set_particle_acceleration`` | ``particle_acc: tuple(float, float)`` | Set the acceleration of all particles |
-| ``delete_particle`` | ``particle: Particle`` | Pops the given particle from the active particles list |
-| ``start`` | N/A | Creates 50 particles |
-| ``clear`` | N/A | Deletes all particles |
+| ``delete_particle`` | ``particle_instance: Particle`` | Pops the given particle from the active particles list |
+| ``start`` | N/A | Creates 50 particles with random position and velocity |
+| ``clear`` | N/A | Deletes all particles from the active particle list |
 
 <br>
+
+##### Tests
+
+* IT-001: ``start`` method instantiates exactly 50 particles with desired physics state (input or default)
+* IT-002: ``clear`` method deletes all particles from the active particle list
 
 #### particle
 
@@ -84,7 +89,7 @@ This sub-module covers the following functionality:
 * Pygame rendering setup (rect and surf attributes)
 * State for position, velocity and acceleration
 * An update method that will update the position of the particle based on its physics state.
-* Options for different shape particles - rect and circle.
+* Options for different shape particles - rect and ellipse.
 
 <br>
 
@@ -92,12 +97,13 @@ This sub-module covers the following functionality:
 | Attribute | Type | Usage |
 | :--- | :--- | :--- |
 | ``MODE_RECT`` | ``int`` | Stores the integer code for rect particle mode under a recognisable attribute name |
-| ``MODE_CIRCLE`` | ``int`` | Stores the integer code for circle particle mode under a recognisable attribute name |
-| ``this.position`` | ``tuple(float,float)`` | Stores the current axial positions of the particle |
-| ``this.velocity`` | ``tuple(float,float)`` | Stores the current velocities of the particle |
-| ``this.acceleration`` | ``tuple(float,float)`` | Stores the current accelerations of the particle |
-| ``this.rect`` | ``pygame.Rect`` | Stores the geometry data for the particle instance |
-| ``this.surf`` | ``pygame.surface.Surface`` | Stores the render data for the particle instance |
+| ``MODE_ELLIPSE`` | ``int`` | Stores the integer code for circle particle mode under a recognisable attribute name |
+| ``self.size`` | ``tuple(int,int)`` | Stores the size of the particle used when setting the surface in the ``set_mode`` method |
+| ``self.position`` | ``tuple(float,float)`` | Stores the current axial positions of the particle |
+| ``self.velocity`` | ``tuple(float,float)`` | Stores the current velocities of the particle |
+| ``self.acceleration`` | ``tuple(float,float)`` | Stores the current accelerations of the particle |
+| ``self.rect`` | ``pygame.Rect`` | Stores the geometry data for the particle instance |
+| ``self.surf`` | ``pygame.surface.Surface`` | Stores the render data for the particle instance |
 
 <br>
 
@@ -105,8 +111,16 @@ This sub-module covers the following functionality:
 | Method | Parameters | Usage |
 | :--- | :--- | :--- |
 | ``__init__`` | ``pos: tuple(int,int)``<br>``size: int``<br>``mode: int``<br>``vel: tuple(float,float)`` | Instantiate the particle |
-| ``update`` | N/A | Uses particle physics state to update position |
-| ``set_mode`` | ``mode: int`` | Sets the particle shape |
-| ``set_velocity`` | ``vel = tuple(float,float)`` | Sets the particle velocity |
-| ``set_acceleration`` | ``acc = tuple(float,float)`` | Sets the particle acceleration |
-| ``delete`` | N/A | Deletes the particle from memory + the active particle list |
+| ``update`` | N/A | Uses particle physics state to update float position and subsequently integer rect position |
+| ``set_mode`` | ``mode: int`` | Sets the particle shape and collision mode |
+| ``set_velocity`` | ``vel: tuple(float,float)`` | Sets the particle velocity |
+| ``set_acceleration`` | ``acc: tuple(float,float)`` | Sets the particle acceleration |
+| ``delete`` | N/A | Deletes the particle from the particle sprite group |
+
+<br>
+
+##### Tests
+
+* UT-001: ``set_mode`` method correctly updates the particle mode
+* UT-002: ``update`` method correctly updates particle state
+* UT-003: ``delete`` method correctly deletes particle from particle sprite group
