@@ -1,5 +1,8 @@
 # 2D-Particle-Engine
 
+> [!WARNING]
+> Project is a **work in progress** and is not currently a working version.
+
 **An interactive demonstration environment to simulate 2D particle physics and collisions. Designed with modular architecture for future external integration in pygame projects.**
 
 This project uses ideas from the agile software development methodology, for more information on the development process please visit the [project overview](docs/OVERVIEW.md).
