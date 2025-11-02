@@ -49,3 +49,6 @@ class Particle:
 
     def set_accleration(self, acc: tuple[float, float]):
         self.acceleration = acc
+
+    def delete(self):
+        global_state.PARTICLE_GROUP.remove(self)
