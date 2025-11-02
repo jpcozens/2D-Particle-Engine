@@ -31,7 +31,7 @@ class Particle_Controller:
 
     def clear(self):
         while len(self.particles) > 0: 
-            self.particles.pop()
+            self.particles.pop().delete()
 
     def set_particle_mode(self, particle_mode: int):
         for particle in self.particles:
@@ -47,3 +47,4 @@ class Particle_Controller:
 
     def delete_particle(self, particle_instance: Particle):
         self.particles.remove(particle_instance)
+        particle_instance.delete()
