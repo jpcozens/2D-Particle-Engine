@@ -5,7 +5,8 @@
 ### Tech Stack
 
 [! Version-proofing to be completed at project finalisation.]
-[! Current language version is a placeholder]
+> [!NOTE]
+> [! Current language version is a placeholder]
 * Language: **Python 3.11+**
 * Dependencies: **Pygame, Pytest (developmental dependency)**
 
@@ -60,6 +61,24 @@ These are the submodules derived from each module:
 | base-GUI | The interaction options for the base-particle submodule. Includes changing individual and overall particle velocities and positions | 
 | drag-GUI | The interaction options for the drag-particle submodule. Includes changing individual and overall particle gravity and air resistance modifiers | 
 | collision-GUI | The interaction options for the object-collisions-particle and particle-collisions-particle submodules. Includes placing and removing objects from the demo, as well as disabling collisions for particle-particle or object-particle |
+
+---
+
+## Testing
+
+> [!NOTE]
+> Test IDs for unit and integration tests are unique to each class.
+
+Testing within this project consists of three different kinds of tests:
+* Unit tests: denoted by UT-XXX, where XXX is the ID associated with the test. These are summarised within documentation for individual classes.
+* Integration tests: denoted by IT-XXX, where XXX is the ID associated with the test. These are summarised within documentation for individual classes.
+* Non-functional requirement tests: non-functional requirements are documented for each module.
+
+Tests take place within the [tests directory](/tests/).
+
+Unit tests **MUST PASS** when updating a class.
+Integration tests **MUST PASS** before merging changes to affected modules/sub-modules.
+Test Non-functional requirements regularly to ensure project is sufficiently optimised.
 
 ---
 
