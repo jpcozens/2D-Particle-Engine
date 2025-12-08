@@ -71,14 +71,14 @@ The particle controller will be implemented as a **singleton** instance it will 
 | ``set_particle_acceleration`` | ``particle_acc: tuple(float, float)`` | Set the acceleration of all particles |
 | ``delete_particle`` | ``particle_instance: Particle`` | Pops the given particle from the active particles list |
 | ``start`` | N/A | Creates 50 particles with random position and velocity |
-| ``clear`` | N/A | Deletes all particles from the active particle list |
+| ``clear`` | N/A | Deletes all particles and removes them from the active particle list |
 
 <br>
 
 ##### Tests
 
 * IT-001: ``start`` method instantiates exactly 50 particles with desired physics state (input or default)
-* IT-002: ``clear`` method deletes all particles from the active particle list
+* IT-002: ``clear`` method deletes all particles and removes them from the active particle list
 
 #### particle
 
