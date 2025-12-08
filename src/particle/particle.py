@@ -47,7 +47,7 @@ class Particle:
     def set_velocity(self, vel: tuple[float, float]):
         self.velocity = vel
 
-    def set_accleration(self, acc: tuple[float, float]):
+    def set_acceleration(self, acc: tuple[float, float]):
         self.acceleration = acc
 
     def delete(self):
