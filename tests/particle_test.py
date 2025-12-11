@@ -12,21 +12,29 @@ pygame.display.set_mode()
 # UT-001 - set_mode method correctly updates the particle mode
 # converts surfaces into BufferProxys and compares raw bytes contents
 def test_set_mode():
-    particle_test_instance = Particle((0,0), (5,5), Particle.MODE_RECT, (1,1))
+    particle_test_instance = Particle((0,0), (50,50), Particle.MODE_RECT, (1,1))
 
     # compare set_mode(ellipse) to particle instantiated as ellipse
-    temp_particle_test_instance_ellipse = Particle((0,0), (5,5), Particle.MODE_ELLIPSE, (1,1))
+    temp_particle_test_instance_ellipse = Particle((0,0), (50,50), Particle.MODE_ELLIPSE, (1,1))
     particle_test_instance.set_mode(Particle.MODE_ELLIPSE)
-    surf_ellipse_buffer_temp = temp_particle_test_instance_ellipse.surf.get_view()
-    surf_ellipse_buffer_real = particle_test_instance.surf.get_view()
-    assert surf_ellipse_buffer_temp.raw == surf_ellipse_buffer_real.raw
+    surf_ellipse_pixelarray_temp = pygame.PixelArray(temp_particle_test_instance_ellipse.surf)
+    surf_ellipse_pixelarray_real = pygame.PixelArray(particle_test_instance.surf)
+    pixelarray_comparison_mask = surf_ellipse_pixelarray_real.compare(surf_ellipse_pixelarray_temp)
+    for row in pixelarray_comparison_mask:
+        for pixel in row:
+            # check integer pixel code is -1 (white)
+            # white indicates the same colour as per the comparison mask
+            assert pixel == -1
 
     # compare set_mode(rect) to particle instantiated as rect
-    temp_particle_test_instance_rect = Particle((0,0), (5,5), Particle.MODE_RECT, (1,1))
+    temp_particle_test_instance_rect = Particle((0,0), (50,50), Particle.MODE_RECT, (1,1))
     particle_test_instance.set_mode(Particle.MODE_RECT)
-    surf_rect_buffer_temp = temp_particle_test_instance_rect.surf.get_view()
-    surf_rect_buffer_real = particle_test_instance.surf.get_view()
-    assert surf_rect_buffer_temp.raw == surf_rect_buffer_real.raw
+    surf_rect_pixelarray_temp = pygame.PixelArray(temp_particle_test_instance_rect.surf)
+    surf_rect_pixelarray_real = pygame.PixelArray(particle_test_instance.surf)
+    pixelarray_comparison_mask = surf_rect_pixelarray_real.compare(surf_rect_pixelarray_temp)
+    for row in pixelarray_comparison_mask:
+        for pixel in row:
+            assert pixel == -1
 
 
 # UT-002 - update method correctly updates particle state
@@ -49,7 +57,7 @@ acceleration_test_data = [
 ]
 
 # assert that particle state update calls follow test data for (5,5) velocity, 0 acceleration
-particle_test_instance_no_acceleration = Particle((0,0), (5,5), Particle.MODE_RECT, (5,5))
+particle_test_instance_no_acceleration = Particle((0,0), (50,50), Particle.MODE_RECT, (5,5))
 @pytest.mark.parametrize("vel, pos", no_acceleration_test_data)
 def test_update_no_acceleration(vel, pos):
     particle_test_instance_no_acceleration.update()
@@ -57,7 +65,7 @@ def test_update_no_acceleration(vel, pos):
     assert particle_test_instance_no_acceleration.position == pos
 
 # assert that particle state update calls follow test data for (5,5) velocity, (1,1) acceleration
-particle_test_instance_acceleration = Particle((0,0), (5,5), Particle.MODE_RECT, (5,5))
+particle_test_instance_acceleration = Particle((0,0), (50,50), Particle.MODE_RECT, (5,5))
 @pytest.mark.parametrize("vel, pos", acceleration_test_data)
 def test_update_acceleration(vel, pos):
     particle_test_instance_acceleration.set_acceleration((1,1))
@@ -69,6 +77,6 @@ def test_update_acceleration(vel, pos):
 # UT-003 - delete method correctly deletes particle from sprite group
 # assert that deleted particle does not exist within particle group
 def test_delete():
-    particle_test_instance = Particle((0,0), (5,5), Particle.MODE_RECT, (1,1))
+    particle_test_instance = Particle((0,0), (50,50), Particle.MODE_RECT, (1,1))
     particle_test_instance.delete()
     assert particle_test_instance not in PARTICLE_GROUP 
