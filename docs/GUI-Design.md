@@ -108,6 +108,7 @@ Buttons are children of the Panel class, with the following additions:
 
 **State**
 | Attribute | Type | Usage |
+| :--- | :--- | :--- |
 | ``self.rect`` | pygame.Rect | Stores the geometry data for the surface |
 | ``self.surf`` | pygame.Surface | Stores the render data for the button panel |
 | ``self.text_instance`` | GUI.Text | The text instance to title the panel |
@@ -118,6 +119,7 @@ Buttons are children of the Panel class, with the following additions:
 
 **Methods**
 | Method | Parameters | Usage |
+| :--- | :--- | :--- |
 | ``__init__`` | ``pos: tuple(int,int)``<br>``size: tuple(int,int)``<br>``onclick: Callable``<br>``*onclick_args: tuple(Any, ...)``| Initialise the button |
 | ``update`` | N/A | Check for mouse interaction with the button |
 | ``delete`` | N/A | Remove the button from the GUI sprite group |
@@ -146,6 +148,7 @@ slider interaction element. Sliders should:
 **State**
 
 | Attribute | Type | Usage |
+| :--- | :--- | :--- |
 | ``self.rect`` | pygame.Rect | Stores geometric data for the slider panel |
 | ``self.surf`` | pygame.Surface | Stores render data for the slider panel |
 | ``self.slider_range`` | tuple(int, int) | The range of values the slider covers |
@@ -157,6 +160,7 @@ slider interaction element. Sliders should:
 **Methods**
 
 | Method | Parameters | Usage |
+| :--- | :--- | :--- |
 | ``__init__`` | ``range: tuple(int,int)``<br>``slider_function: Callable`` | Initialises the slider |
 | ``slider_update`` | N/A | Updates the position of the slider button and calls the associated slider function with the slider's value. Called by the onclick of the ``slider_button`` element |
 | ``delete`` | N/A | Removes the slider from the GUI sprite group |
